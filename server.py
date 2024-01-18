@@ -3,8 +3,7 @@
     localhost:5000.
 '''
 # Import Flask, render_template, request from the flask pramework package
-from flask import Flask, render_template, request as flask_request
-import requests
+from flask import Flask, render_template, request
 
 # Import the sentiment_analyzer function from the package created: TODO
 
