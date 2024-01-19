@@ -15,6 +15,11 @@ def emotion_detector(text_analyse):
     try:
         raw_response = requests.post(BASE_URL, headers=HEADERS, json=data, timeout=10)
         response = json.loads(raw_response.text)
+
+        if raw_response.status_code != 200:
+            print(f"[error]: {response.get('message')}")
+            return None
+
         return _process_response(response)
     except requests.exceptions.RequestException as error:
         print(f"[error]: {error}")
