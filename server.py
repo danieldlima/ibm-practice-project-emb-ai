@@ -31,10 +31,7 @@ def sent_analyzer():
             return {
                 'message': "[error]: Invalid text! Try again!",
                 'statusCode': 400,
-                'data': {
-                    'score': score_sentiment,
-                    'label': 'Invalid text! Try again!'
-                }
+                'data': None
             }, 400
         else:
             label = f"The given text has been identified as {label_sentiment.split('_')[1]} with a score of {score_sentiment}"

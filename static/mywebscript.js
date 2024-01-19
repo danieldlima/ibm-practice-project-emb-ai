@@ -5,6 +5,9 @@ const runSentimentAnalysis = async () => {
     if (response.status === 200) {
       const { data } = await response.json();
       document.getElementById("system_response").innerHTML = data.label;
+    } else if (response.status === 400) {
+      const { data } = await response.json();
+      document.getElementById("system_response_error").innerHTML = data.message;
     } else {
       console.error('runSentimentAnalysis(): Request to endpoint sentimentAnalyzer failed!');
     }
