@@ -16,14 +16,14 @@ def emotion_detector(text_analyse):
         raw_response = requests.post(BASE_URL, headers=HEADERS, json=data, timeout=10)
         response = json.loads(raw_response.text)
 
-        if raw_response.status_code != 200:
-            print(f"[error]: {response.get('message')}")
-            return None
+        if raw_response.status_code == 400:
+            print(f"[error<emotion_detector(text_analyse)>]: {response.get('message')}")
+            return _process_blank_entry()
 
         return _process_response(response)
     except requests.exceptions.RequestException as error:
-        print(f"[error]: {error}")
-        return None
+        print(f"[error<emotion_detector(text_analyse)>]: {error}")
+        return _process_blank_entry()
 
 def compose_emotion(response):
     if response is None:
@@ -42,17 +42,27 @@ def compose_emotion(response):
              f"'sadness': {sadness_emotion}. "
              f"The dominant emotion is {dominant_emotion}.")
 
+def _process_blank_entry():
+    return {
+        'anger': None,
+        'disgust': None,
+        'fear': None,
+        'joy': None,
+        'sadness': None,
+        'dominant_emotion': None
+    }
+
 def _process_response(response):
     emotion_predictions = response.get('emotionPredictions', {})
     if not emotion_predictions:
-        return None
+        return _process_blank_entry()
 
     return _get_emotions_and_dominant(emotion_predictions)
 
 def _get_emotions_and_dominant(emotion_predictions):
     first_prediction = emotion_predictions[0].get('emotion')
     if not first_prediction:
-        return None
+        return _process_blank_entry()
 
     emotions = {k: first_prediction.get(k) for k in ['anger', 'disgust', 'fear', 'joy', 'sadness']}
     dominant_emotion = _get_dominant(emotions)
