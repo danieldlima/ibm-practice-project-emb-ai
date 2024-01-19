@@ -28,7 +28,7 @@ def emotion_analyzer():
 
     # Preparing status message and status code
     message, status_code = (
-        ("[error]: No text to analyze was provided", 400)
+        ("Invalid text! Please try again!", 400)
         if text_to_analyze is None or not text_to_analyze.strip()
         else ("success", 200)
     )
