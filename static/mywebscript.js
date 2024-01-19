@@ -1,10 +1,9 @@
-const runSentimentAnalysis = async () => {
+const runEmotionAnalysis = async () => {
     const textToAnalyze = document.getElementById("textToAnalyze").value;
-    const response = await fetch(`sentimentAnalyzer?textToAnalyze=${textToAnalyze}`);
+    const response = await fetch(`emotionDetector?textToAnalyze=${textToAnalyze}`);
 
     const texSentiment = document.getElementById("system_response")
     const textError = document.getElementById("system_response_error")
-
     if (response.status === 200) {
       const { data } = await response.json();
 

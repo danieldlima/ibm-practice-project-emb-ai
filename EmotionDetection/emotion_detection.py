@@ -25,6 +25,23 @@ def emotion_detector(text_analyse):
         print(f"[error]: {error}")
         return None
 
+def compose_emotion(response):
+    if response is None:
+        return None
+
+    dominant_emotion = response['dominant_emotion']
+    anger_emotion = response['anger']
+    disgust_emotion = response['disgust']
+    fear_emotion = response['fear']
+    joy_emotion = response['joy']
+    sadness_emotion = response['sadness']
+
+    return (f"For the given statement, the system response is "
+             f"'anger': {anger_emotion}, 'disgust': {disgust_emotion}, "
+             f"'fear': {fear_emotion}, 'joy': {joy_emotion} and "
+             f"'sadness': {sadness_emotion}. "
+             f"The dominant emotion is {dominant_emotion}.")
+
 def _process_response(response):
     emotion_predictions = response.get('emotionPredictions', {})
     if not emotion_predictions:
