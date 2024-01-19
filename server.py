@@ -8,8 +8,6 @@ import json
 from flask import Flask, render_template, request
 from SentimentAnalysis.sentiment_analysis import sentiment_analyzer
 
-# Import the sentiment_analyzer function from the package created: TODO
-
 #Initiate the flask app
 app = Flask("Sentiment Analyzer")
 
@@ -33,14 +31,18 @@ def sent_analyzer():
                 'statusCode': 400,
                 'data': None
             }, 400
-        else:
-            label = f"The given text has been identified as {label_sentiment.split('_')[1]} with a score of {score_sentiment}"
-            data_sentiment = {'label': label, 'score': score_sentiment}
-            data_sentiment = {"message": "success", "statusCode": 200, "data": data_sentiment}
-            return json.dumps(data_sentiment, indent=2), 200
-    else:
-        data = {"message": "[error]: No text to analyze was provided", "statusCode": 400, "data": None}
-        return json.dumps(data, indent=2), 400
+
+        label = (f"The given text has been identified as {label_sentiment.split('_')[1]} "
+                 f"with a score of {score_sentiment}")
+        data_sentiment = {'label': label, 'score': score_sentiment}
+        data_sentiment = {"message": "success", "statusCode": 200, "data": data_sentiment}
+        return json.dumps(data_sentiment, indent=2), 200
+
+    data = {
+        "message": "[error]: No text to analyze was provided",
+        "statusCode": 400, "data": None
+    }
+    return json.dumps(data, indent=2), 400
 
 @app.route("/")
 def render_index_page():
@@ -50,6 +52,5 @@ def render_index_page():
     return render_template("index.html")
 
 if __name__ == "__main__":
-    """ This functions executes the flask app and deploys it on localhost:5000
-    """
+    # his functions executes the flask app and deploys it on localhost:5000
     app.run(debug=True, host="0.0.0.0", port=5000)
