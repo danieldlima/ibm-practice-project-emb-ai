@@ -40,7 +40,7 @@ def sent_analyzer():
             return json.dumps(data_sentiment, indent=2), 200
     else:
         data = {"message": "[error]: No text to analyze was provided", "statusCode": 400, "data": None}
-        return json.dumps(data, indent=2), 422
+        return json.dumps(data, indent=2), 400
 
 @app.route("/")
 def render_index_page():
