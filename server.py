@@ -26,7 +26,7 @@ def sent_analyzer():
         response = sentiment_analyzer(text_to_analyze)
         label_sentiment = response['label']
         score_sentiment = response['score']
-        label = f"The given text has been identified as {label_sentiment.split('_')[0]} with a score of {score_sentiment}"
+        label = f"The given text has been identified as {label_sentiment.split('_')[1]} with a score of {score_sentiment}"
         data_sentiment = {'label': label, 'score': score_sentiment}
         data_sentiment = {"message": "success", "statusCode": 200, "data": data_sentiment}
         return json.dumps(data_sentiment, indent=2), 200
