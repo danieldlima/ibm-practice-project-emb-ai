@@ -44,7 +44,7 @@ def emotion_analyzer():
     return create_response(message, status_code, response_data)
 
 @app.route("/")
-def render_index_page():
+def home():
     """ This function initiates the rendering of the main application
         page over the Flask channel
     """
