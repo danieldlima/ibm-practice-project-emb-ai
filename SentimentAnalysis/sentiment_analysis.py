@@ -8,8 +8,7 @@ def sentiment_analyzer(text_analyse):
 
     response = requests.post(url, headers=header, json=data)
     formatted_response = json.loads(response.text)
-    document_sentiment = formatted_response["documentSentiment"]
-    label = document_sentiment['label'] if response.status_code == 200 else None
-    score = document_sentiment['score'] if response.status_code == 200 else None
+    label = formatted_response["documentSentiment"]['label'] if response.status_code == 200 else None
+    score = formatted_response["documentSentiment"]['score'] if response.status_code == 200 else None
 
     return {'label': label, 'score': score}

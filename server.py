@@ -30,19 +30,19 @@ def sent_analyzer():
         if label_sentiment is None:
             return {
                 'message': "[error]: Invalid text! Try again!",
-                'statusCode': 422,
+                'statusCode': 400,
                 'data': {
                     'score': score_sentiment,
                     'label': 'Invalid text! Try again!'
                 }
-            }, 422
+            }, 400
         else:
             label = f"The given text has been identified as {label_sentiment.split('_')[1]} with a score of {score_sentiment}"
             data_sentiment = {'label': label, 'score': score_sentiment}
             data_sentiment = {"message": "success", "statusCode": 200, "data": data_sentiment}
             return json.dumps(data_sentiment, indent=2), 200
     else:
-        data = {"message": "[error]: No text to analyze was provided", "statusCode": 422, "data": None}
+        data = {"message": "[error]: No text to analyze was provided", "statusCode": 400, "data": None}
         return json.dumps(data, indent=2), 422
 
 @app.route("/")
