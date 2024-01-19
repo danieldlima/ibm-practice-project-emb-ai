@@ -1,12 +1,12 @@
-''' Executing this function initiates the application of sentiment
+""" Executing this function initiates the application of sentiment
     analysis to be executed over the Flask channel and deployed on
     localhost:5000.
-'''
+"""
 import json
 
 # Import Flask, render_template, request from the flask framework package
 from flask import Flask, render_template, request
-from EmotionAnalysis.emotion_detection import emotion_detector
+from EmotionDetection.emotion_detection import emotion_detector
 
 #Initiate the flask app
 app = Flask("Sentiment Analyzer")

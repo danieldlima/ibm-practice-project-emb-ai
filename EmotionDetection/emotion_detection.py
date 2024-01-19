@@ -1,4 +1,4 @@
-""" Module providing functionality for working with sentiment using IBM Watson API
+""" Module providing functionality for working with emotion using IBM Watson API
 """
 import json
 
@@ -9,7 +9,7 @@ BASE_URL = ('https://sn-watson-emotion.labs.skills.network/v1'
 HEADERS = {'grpc-metadata-mm-model-id': 'emotion_aggregated-workflow_lang_en_stock'}
 
 def emotion_detector(text_analyse):
-    """ Function to perform sentiment analysis based on text provided as a parameter
+    """ Function to perform emotion analysis based on text provided as a parameter
     """
     data = {'raw_document': { 'text': text_analyse }}
     try:
