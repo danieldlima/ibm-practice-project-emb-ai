@@ -4,9 +4,9 @@
 '''
 import json
 
-# Import Flask, render_template, request from the flask pramework package
+# Import Flask, render_template, request from the flask framework package
 from flask import Flask, render_template, request
-from SentimentAnalysis.sentiment_analysis import sentiment_analyzer
+from EmotionAnalysis.emotion_detection import emotion_detector
 
 #Initiate the flask app
 app = Flask("Sentiment Analyzer")
@@ -21,7 +21,7 @@ def sent_analyzer():
     text_to_analyze = request.args.get('textToAnalyze')
 
     if text_to_analyze:
-        response = sentiment_analyzer(text_to_analyze)
+        response = emotion_detector(text_to_analyze)
         label_sentiment = response['label']
         score_sentiment = response['score']
 
@@ -52,5 +52,5 @@ def render_index_page():
     return render_template("index.html")
 
 if __name__ == "__main__":
-    # his functions executes the flask app and deploys it on localhost:5000
+    # his functions execute the flask app and deploys it on localhost:5000
     app.run(debug=True, host="0.0.0.0", port=5000)
