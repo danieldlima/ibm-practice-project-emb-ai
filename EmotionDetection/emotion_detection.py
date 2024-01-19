@@ -26,6 +26,14 @@ def emotion_detector(text_analyse):
         return _process_blank_entry()
 
 def compose_emotion(response):
+    """
+    Composes the emotion response based on the given response dictionary.
+
+    :param response: A dictionary containing emotion values.
+    :type response: dict
+    :return: The composed emotion response.
+    :rtype: str
+    """
     if response is None:
         return None
 
@@ -75,3 +83,5 @@ def _get_dominant(emotions):
     for emotion, value in emotions.items():
         if value == max_emotion_value:
             return emotion.upper()
+
+    return None
